@@ -1,1081 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prasun Chandra Pandey | FinTech AI Product Manager</title>
-  <!-- Google Fonts & Lucide Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    :root {
-      --bg-primary: #0a0e17;
-      --bg-surface: #111827;
-      --bg-surface-elevated: #1a2234;
-      --bg-glass: rgba(17, 24, 39, 0.85);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(59, 130, 246, 0.3);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --text-subtle: #6b7280;
-      
-      --accent-blue: #3b82f6;
-      --accent-cyan: #06b6d4;
-      --accent-teal: #10b981;
-      --accent-purple: #8b5cf6;
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      
-      --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
-      --gradient-card: linear-gradient(180deg, rgba(26, 34, 52, 0.7) 0%, rgba(17, 24, 39, 0.9) 100%);
-      
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--font-main);
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Ambient Background Glow */
-    .glow-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-      background: 
-        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 65%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Navigation Bar */
-    header.navbar {
-      position: sticky;
-      top: 0;
-      background: var(--bg-glass);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-color);
-      z-index: 100;
-      padding: 16px 0;
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-badge {
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg-surface-elevated);
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border-color);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-teal);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent-teal);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.15); }
-    }
-
-    nav.nav-links {
-      display: flex;
-      gap: 28px;
-    }
-
-    nav.nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    nav.nav-links a:hover {
-      color: var(--accent-cyan);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 70px 0 40px;
-      text-align: center;
-    }
-
-    .pill-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    h1.hero-title {
-      font-size: 3.2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 18px;
-      background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.hero-subtitle {
-      font-size: 1.35rem;
-      font-weight: 500;
-      color: #cbd5e1;
-      max-width: 820px;
-      margin: 0 auto 20px;
-      line-height: 1.4;
-    }
-
-    p.hero-desc {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 850px;
-      margin: 0 auto 36px;
-    }
-
-    .hero-cta {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .btn-primary {
-      background: var(--gradient-accent);
-      color: #0b1120;
-      border: none;
-      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.25);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
-    }
-
-    .btn-secondary {
-      background: var(--bg-surface-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-    }
-
-    .btn-secondary:hover {
-      background: #232d42;
-      border-color: var(--border-accent);
-      color: #fff;
-    }
-
-    /* Infographic Stats Banner */
-    .infographic-banner {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 18px;
-      margin: 48px 0;
-    }
-
-    .stat-card {
-      background: var(--gradient-card);
-      border: 1px solid var(--border-color);
-      padding: 24px 20px;
-      border-radius: 16px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-accent);
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: var(--gradient-accent);
-    }
-
-    .stat-val {
-      font-size: 2.3rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      color: #fff;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .stat-val .accent-cyan { color: var(--accent-cyan); }
-    .stat-val .accent-teal { color: var(--accent-teal); }
-    .stat-val .accent-amber { color: var(--accent-amber); }
-    .stat-val .accent-purple { color: var(--accent-purple); }
-
-    .stat-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--text-muted);
-    }
-
-    .stat-desc {
-      font-size: 0.78rem;
-      color: var(--text-subtle);
-      margin-top: 4px;
-    }
-
-    /* Section Styling */
-    section {
-      padding: 50px 0;
-    }
-
-    .section-header {
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .section-header i {
-      color: var(--accent-cyan);
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* Architecture / Visual Pipeline Widget */
-    .pipeline-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 32px;
-      margin-bottom: 48px;
-    }
-
-    .pipeline-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pipeline-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-      position: relative;
-    }
-
-    .pipeline-node {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 20px;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-
-    .pipeline-node:hover {
-      border-color: var(--accent-cyan);
-      background: #1f2a3f;
-    }
-
-    .node-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      margin-bottom: 8px;
-      color: #93c5fd;
-    }
-
-    .node-body {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Core Competencies Matrix */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 20px;
-    }
-
-    .skill-category {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 24px;
-      transition: transform 0.2s ease;
-    }
-
-    .skill-category:hover {
-      transform: translateY(-3px);
-      border-color: var(--border-accent);
-    }
-
-    .skill-cat-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      color: #fff;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      background: var(--bg-surface-elevated);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #e2e8f0;
-      transition: all 0.2s;
-    }
-
-    .tag:hover {
-      background: rgba(59, 130, 246, 0.2);
-      border-color: rgba(59, 130, 246, 0.5);
-      color: #fff;
-    }
-
-    /* Experience Timeline */
-    .timeline {
-      position: relative;
-      margin-left: 20px;
-      border-left: 2px solid var(--border-color);
-      padding-left: 32px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 48px;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -42px;
-      top: 4px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent-cyan);
-      border: 4px solid var(--bg-primary);
-      box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
-    }
-
-    .exp-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 28px;
-    }
-
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .role-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .company-name {
-      font-size: 1.05rem;
-      color: var(--accent-cyan);
-      font-weight: 600;
-    }
-
-    .role-period {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      background: var(--bg-surface-elevated);
-      padding: 4px 12px;
-      border-radius: 6px;
-      color: var(--text-muted);
-      border: 1px solid var(--border-color);
-    }
-
-    .project-subheading {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #93c5fd;
-      margin: 16px 0 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .exp-bullets {
-      list-style-type: none;
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .exp-bullets li {
-      position: relative;
-      padding-left: 24px;
-      font-size: 0.95rem;
-      color: #d1d5db;
-      line-height: 1.55;
-    }
-
-    .exp-bullets li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--accent-cyan);
-      font-size: 1.1rem;
-    }
-
-    .exp-bullets strong {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    /* Integrations Badge Grid */
-    .integrations-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .integration-pill {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(139, 92, 246, 0.12);
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      color: #c4b5fd;
-    }
-
-    /* Education & Certs Split Grid */
-    .edu-certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .item-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 24px;
-    }
-
-    .item-box-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .cert-item, .edu-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .cert-item:last-child, .edu-item:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .cert-item i, .edu-item i {
-      color: var(--accent-teal);
-      margin-top: 3px;
-    }
-
-    .meta-strong {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .meta-sub {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border-color);
-      padding: 40px 0;
-      margin-top: 60px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--text-subtle);
-    }
-
-    @media (max-width: 768px) {
-      h1.hero-title { font-size: 2.2rem; }
-      p.hero-subtitle { font-size: 1.1rem; }
-      nav.nav-links { display: none; }
-      .timeline { margin-left: 0; padding-left: 20px; }
-      .timeline-dot { left: -30px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prasun Chandra Pandey | AI & FinTech Product Manager</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --primary-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border-color: #334155;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --font-sans: system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        header {
+            padding: 4rem 0 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hook-quote {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            font-style: italic;
+            max-width: 800px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            border-color: var(--primary-color);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Sections */
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        section h2::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .job-company {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-details {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .job-details li {
+            margin-bottom: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        /* Tags */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 1.5rem; }
+            header { padding: 2rem 0; }
+        }
+    </style>
 </head>
 <body>
-  <div class="glow-bg"></div>
-
-  <!-- Sticky Navbar -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <div class="logo-badge">
-        <span class="status-dot"></span>
-        PRASUN CHANDRA PANDEY
-      </div>
-      <nav class="nav-links">
-        <a href="#metrics">Impact</a>
-        <a href="#pipeline">AI Architecture</a>
-        <a href="#competencies">Competencies</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Credentials</a>
-      </nav>
-      <div>
-        <a href="#experience" class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">View Full Bio</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="pill-tag">
-        <i data-lucide="shield-check" style="width:16px;height:16px;"></i>
-        FinTech Product & AI Delivery Leader
-      </div>
-      <h1 class="hero-title">Prasun Chandra Pandey</h1>
-      <p class="hero-subtitle">Lead Product Owner / FinTech Product Manager &bull; Regulated Digital Onboarding, KYC/AML & AI Workflows</p>
-      <p class="hero-desc">
-        Product leader with 11+ years delivering large-scale platform transformations across Banking, Fund Administration, and Payments. Specializing in investor onboarding journeys, multi-tenant compliance architectures, intelligent document processing (IDP), and GenAI-accelerated SDLC delivery.
-      </p>
-      <div class="hero-cta">
-        <a href="#metrics" class="btn btn-primary">
-          <i data-lucide="activity" style="width:18px;height:18px;"></i> Explore Performance Impact
-        </a>
-        <a href="#experience" class="btn btn-secondary">
-          <i data-lucide="layers" style="width:18px;height:18px;"></i> Product Experience
-        </a>
-      </div>
-    </section>
-
-    <!-- Visual Infographic Stats -->
-    <section id="metrics" style="padding: 10px 0 30px;">
-      <div class="infographic-banner">
-        <div class="stat-card">
-          <div class="stat-val"><span class="accent-teal">~60%</span></div>
-          <div class="stat-label">KYC Time Reduction</div>
-          <div class="stat-desc">45-50 min cut to &lt;20 min via IDP & smart routing</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val"><span class="accent-cyan">8w &rarr; 3w</span></div>
-          <div class="stat-label">GenAI SDLC Delivery</div>
-          <div class="stat-desc">Accelerated sprint velocity: 38 &rarr; 11.5 person-days</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val"><span class="accent-purple">12K+</span></div>
-          <div class="stat-label">Investors Onboarded</div>
-          <div class="stat-desc">28K+ applications across 1,900+ active funds</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val"><span class="accent-amber">1,100+</span></div>
-          <div class="stat-label">Document Types Supported</div>
-          <div class="stat-desc">Multi-jurisdictional AI parsing & confidence scoring</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-val"><span class="accent-teal">$1M/mo</span></div>
-          <div class="stat-label">Working Capital Freed</div>
-          <div class="stat-desc">P2P/AP terms & automation at Jaguar Land Rover</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Visual Architecture & Integration Flow -->
-    <section id="pipeline">
-      <div class="section-header">
-        <i data-lucide="cpu" style="width: 28px; height: 28px;"></i>
-        <div>
-          <h2 class="section-title">Intelligent Compliance & Onboarding Blueprint</h2>
-          <p class="section-subtitle">Multi-tenant, AI-assisted architecture delivered for regulated fund administration</p>
-        </div>
-      </div>
-
-      <div class="pipeline-card">
-        <div class="pipeline-title">
-          <i data-lucide="git-merge" style="width:20px;height:20px;color:var(--accent-cyan)"></i>
-          Core End-to-End Product Lifecycle Pipeline
-        </div>
-        <p style="font-size:0.9rem;color:var(--text-muted);">
-          Combines automated heuristic rules, OCR/AI document extraction, and continuous watchlist screening with Human-in-the-Loop (HITL) compliance sign-offs.
-        </p>
-
-        <div class="pipeline-grid">
-          <div class="pipeline-node">
-            <div class="node-header">
-              <i data-lucide="user-check" style="width: 18px; height: 18px;"></i>
-              1. Dynamic Ingestion
-            </div>
-            <div class="node-body">
-              Configurable jurisdiction journeys, investor sub-type routing, minimizing unnecessary customer data input.
-            </div>
-          </div>
-
-          <div class="pipeline-node">
-            <div class="node-header">
-              <i data-lucide="file-search" style="width: 18px; height: 18px;"></i>
-              2. IDP & OCR Extraction
-            </div>
-            <div class="node-body">
-              Azure AI Vision & Foundry mapping 1,100+ document formats with custom confidence scoring.
-            </div>
-          </div>
-
-          <div class="pipeline-node">
-            <div class="node-header">
-              <i data-lucide="shield-alert" style="width: 18px; height: 18px;"></i>
-              3. Screening & Risk Rating
-            </div>
-            <div class="node-body">
-              Automated LSEG World-Check PEP/sanction scans and configurable administrator risk rating matrices.
-            </div>
-          </div>
-
-          <div class="pipeline-node">
-            <div class="node-header">
-              <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
-              4. Exception Review (HITL)
-            </div>
-            <div class="node-body">
-              Summarized validation dashboards; compliance officers review confidence anomalies and approve cases in &lt;20 min.
-            </div>
-          </div>
-        </div>
-
-        <div class="integrations-bar">
-          <span style="font-size:0.82rem;font-weight:600;color:var(--text-muted);display:flex;align-items:center;gap:6px;">
-            <i data-lucide="link-2" style="width:14px;height:14px;"></i> Connected Ecosystem:
-          </span>
-          <span class="integration-pill">LSEG World-Check</span>
-          <span class="integration-pill">GBG ID Verification</span>
-          <span class="integration-pill">DocuSign e-Sign</span>
-          <span class="integration-pill">SendGrid Communications</span>
-          <span class="integration-pill">Okta / Auth0 Identity</span>
-          <span class="integration-pill">TISA UK Standards</span>
-          <span class="integration-pill">Google Gemini LLM</span>
-          <span class="integration-pill">Azure AI Foundry</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Competencies -->
-    <section id="competencies">
-      <div class="section-header">
-        <i data-lucide="grid" style="width: 28px; height: 28px;"></i>
-        <div>
-          <h2 class="section-title">Core Competencies</h2>
-          <p class="section-subtitle">Cross-functional expertise spanning product, FinTech compliance, AI & enterprise leadership</p>
-        </div>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-category">
-          <div class="skill-cat-header">
-            <i data-lucide="compass" style="color: var(--accent-cyan); width: 22px; height: 22px;"></i>
-            Product Management
-          </div>
-          <div class="skill-tags">
-            <span class="tag">Product Strategy & Vision</span>
-            <span class="tag">Roadmap Planning</span>
-            <span class="tag">OKRs & Metrics</span>
-            <span class="tag">Customer Discovery</span>
-            <span class="tag">MVP Definition</span>
-            <span class="tag">Feature Prioritization</span>
-            <span class="tag">Epics & User Stories</span>
-            <span class="tag">SAFe / Agile PI Planning</span>
-            <span class="tag">Sprint & Release Governance</span>
-            <span class="tag">Backlog Refinement</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-cat-header">
-            <i data-lucide="landmark" style="color: var(--accent-teal); width: 22px; height: 22px;"></i>
-            FinTech & Compliance
-          </div>
-          <div class="skill-tags">
-            <span class="tag">Investor Onboarding</span>
-            <span class="tag">KYC / AML Workflows</span>
-            <span class="tag">Sanctions & PEP Screening</span>
-            <span class="tag">Risk-Rating Engines</span>
-            <span class="tag">Fund Administration</span>
-            <span class="tag">Identity Verification (IDV)</span>
-            <span class="tag">Audit Readiness</span>
-            <span class="tag">SWIFT MT103/MT202</span>
-            <span class="tag">MT940/MT942 Bank Recon</span>
-            <span class="tag">Jurisdiction Workflows</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-cat-header">
-            <i data-lucide="sparkles" style="color: var(--accent-purple); width: 22px; height: 22px;"></i>
-            AI & Technical Data
-          </div>
-          <div class="skill-tags">
-            <span class="tag">Intelligent Document Processing (IDP)</span>
-            <span class="tag">Azure AI Vision</span>
-            <span class="tag">Azure AI Foundry</span>
-            <span class="tag">GenAI Prompt Engineering</span>
-            <span class="tag">Google Gemini Integration</span>
-            <span class="tag">REST APIs & JSON</span>
-            <span class="tag">SQL & Data Dictionaries</span>
-            <span class="tag">Data Mapping & Transformation</span>
-            <span class="tag">Azure DevOps</span>
-            <span class="tag">JIRA Product Discovery</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <div class="skill-cat-header">
-            <i data-lucide="users" style="color: var(--accent-amber); width: 22px; height: 22px;"></i>
-            Leadership & Governance
-          </div>
-          <div class="skill-tags">
-            <span class="tag">Executive Client Management</span>
-            <span class="tag">Cross-Functional Team Lead (~55+)</span>
-            <span class="tag">Product Owner Coaching</span>
-            <span class="tag">UAT Scenario Governance</span>
-            <span class="tag">Risk & Change Management</span>
-            <span class="tag">RFP / RFI Bid Leadership</span>
-            <span class="tag">Figma AI Prototyping</span>
-            <span class="tag">Stakeholder Influence</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Professional Experience Timeline -->
-    <section id="experience">
-      <div class="section-header">
-        <i data-lucide="briefcase" style="width: 28px; height: 28px;"></i>
-        <div>
-          <h2 class="section-title">Professional Experience</h2>
-          <p class="section-subtitle">Proven leadership across 11+ years in Tier-1 product and consulting environments</p>
-        </div>
-      </div>
-
-      <div class="timeline">
-        <!-- Coforge -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <div>
-                <h3 class="role-title">Lead Product Owner (PM-Level Scope)</h3>
-                <div class="company-name">Coforge Limited</div>
-              </div>
-              <div class="role-period">Jun 2022 &ndash; Present</div>
-            </div>
-
-            <div class="project-subheading">
-              <i data-lucide="box" style="width:16px;height:16px;"></i> Enterprise Digital Onboarding & Compliance Platform Modernisation
-            </div>
-
-            <ul class="exp-bullets">
-              <li><strong>Product Strategy & Discovery:</strong> Direct product discovery through structured interviews, workflow analysis, and pilot initiatives with Fund Managers and Fund Administrators for a configurable, multi-tenant compliance SaaS platform.</li>
-              <li><strong>Full Lifecycle Ownership:</strong> Own discovery, solution options, roadmap planning, MVP scoping, backlog grooming, UAT, and release governance. Delivered <strong>30+ production features in 6 months</strong>.</li>
-              <li><strong>60% KYC Time Reduction:</strong> Decreased application review duration from ~45–50 minutes to under 20 minutes by engineering automated validation and AI-assisted workflows while preserving human compliance checkpoints.</li>
-              <li><strong>Multi-Jurisdiction Journeys:</strong> Built dynamic onboarding flows based on investor types and geographical jurisdictions, cutting redundant data ingestion and boosting submission rates.</li>
-              <li><strong>Intelligent Document Processing:</strong> Advanced IDP supporting <strong>1,100+ document types</strong> with automatic classification, data extraction, expiry alerting, and confidence score thresholds.</li>
-              <li><strong>Ecosystem Integrations:</strong> Integrated 7 enterprise partners (LSEG World-Check, GBG, DocuSign, SendGrid, Okta/Auth0, TISA UK, Google Gemini) to power real-time KYC/AML screenings.</li>
-              <li><strong>GenAI Delivery Acceleration:</strong> Pioneered an AI-accelerated delivery model, compressing an 8-week SDLC to 3 weeks across story generation, acceptance criteria, and test planning.</li>
-              <li><strong>Cross-Functional Leadership:</strong> Lead through influence across ~40 Developers, 11 QA, 2 UX/UI designers, and 2 Architects, while directly managing and coaching 2 Product Owners.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Infosys -->
-        <div class="timeline-item">
-          <div class="timeline-dot" style="background:var(--accent-purple);box-shadow:0 0 10px rgba(139,92,246,0.6)"></div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <div>
-                <h3 class="role-title">Product Owner &bull; Consultant (Associate Consultant &rarr; Consultant)</h3>
-                <div class="company-name">Infosys Limited</div>
-              </div>
-              <div class="role-period">Feb 2018 &ndash; Jun 2022</div>
-            </div>
-
-            <div class="project-subheading">
-              <i data-lucide="landmark" style="width:16px;height:16px;"></i> Truist Bank Platform Unification & Modernisation Programme (SunTrust + BB&T Merger)
-            </div>
-            <ul class="exp-bullets">
-              <li>Owned backlog, gap analysis, and release planning for the Remote Deposit Capture (RDC) platform migration across <strong>3,000+ ATMs/ITMs, 1,600+ branch scanners, and 7M+ mobile users</strong>.</li>
-              <li>Unified disparate legacy RDC architectures into a single APTRA Passport platform over a 2.5-year delivery schedule.</li>
-            </ul>
-
-            <div class="project-subheading" style="margin-top:20px;">
-              <i data-lucide="refresh-cw" style="width:16px;height:16px;"></i> HSBC Payment Integration & Bank-Reconciliation Platform
-            </div>
-            <ul class="exp-bullets">
-              <li>Led payment modernisation analysis covering SWIFT MT103/MT202 messaging and MT940/MT942 statement feeds.</li>
-              <li>Authored AS-IS/TO-BE solution designs, functional specs, UAT criteria, and operational onboarding guides.</li>
-            </ul>
-
-            <div class="project-subheading" style="margin-top:20px;">
-              <i data-lucide="layers" style="width:16px;height:16px;"></i> Deutsche Bank SAP ERP Upgrade & S/4HANA Transformation
-            </div>
-            <ul class="exp-bullets">
-              <li>Analyzed 6 months of enterprise production logs to structure risk-based test frameworks across Order-to-Cash (O2C) and Asset Management.</li>
-              <li>Facilitated S/4HANA CoE discovery workshops and reverse-engineered custom SAP codebases to de-risk rollout.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- TCS -->
-        <div class="timeline-item">
-          <div class="timeline-dot" style="background:var(--accent-amber);box-shadow:0 0 10px rgba(245,158,11,0.6)"></div>
-          <div class="exp-card">
-            <div class="exp-header">
-              <div>
-                <h3 class="role-title">Assistant System Analyst</h3>
-                <div class="company-name">Tata Consultancy Services Limited</div>
-              </div>
-              <div class="role-period">Jul 2015 &ndash; Feb 2018</div>
-            </div>
-
-            <div class="project-subheading">
-              <i data-lucide="truck" style="width:16px;height:16px;"></i> SAP Financial Accounting & Controlling | Jaguar Land Rover
-            </div>
-            <ul class="exp-bullets">
-              <li>Optimized Procure-to-Pay (P2P) and Accounts Payable (AP) terms, freeing <strong>~$1M/month in Net Working Capital</strong>.</li>
-              <li>Engineered cross-module finance enhancements for cost/profit center accounting, tax rules, and GST statutory compliance.</li>
-              <li>Managed mission-critical incident triage and month-end financial closure support within a 150-member delivery programme.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education, Certifications & Honors -->
-    <section id="education">
-      <div class="section-header">
-        <i data-lucide="award" style="width: 28px; height: 28px;"></i>
-        <div>
-          <h2 class="section-title">Credentials & Recognition</h2>
-          <p class="section-subtitle">Academic degrees, industry certifications, and corporate excellence awards</p>
-        </div>
-      </div>
-
-      <div class="edu-certs-grid">
-        <!-- Certifications -->
-        <div class="item-box">
-          <div class="item-box-title">
-            <i data-lucide="check-square" style="color:var(--accent-teal)"></i> Certifications
-          </div>
-          <div class="cert-item">
-            <i data-lucide="badge-check"></i>
-            <div>
-              <div class="meta-strong">SAFe® 6 Certified POPM</div>
-              <div class="meta-sub">Scaled Agile Product Owner / Product Manager</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <i data-lucide="badge-check"></i>
-            <div>
-              <div class="meta-strong">Certified Scrum Product Owner® (CSPO)</div>
-              <div class="meta-sub">Scrum Alliance</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <i data-lucide="badge-check"></i>
-            <div>
-              <div class="meta-strong">PRINCE2® Practitioner</div>
-              <div class="meta-sub">AXELOS Global Project Management</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <i data-lucide="sparkles" style="color:var(--accent-purple)"></i>
-            <div>
-              <div class="meta-strong">AI Product Management (ICAIPM)</div>
-              <div class="meta-sub">Institute of Product Leadership &bull; <em>Expected Oct 2026</em></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education -->
-        <div class="item-box">
-          <div class="item-box-title">
-            <i data-lucide="graduation-cap" style="color:var(--accent-cyan)"></i> Education
-          </div>
-          <div class="edu-item">
-            <i data-lucide="book-open"></i>
-            <div>
-              <div class="meta-strong">MBA in Finance</div>
-              <div class="meta-sub">Symbiosis Institute of Management Studies (SIMS, Pune)</div>
-            </div>
-          </div>
-          <div class="edu-item">
-            <i data-lucide="book-open"></i>
-            <div>
-              <div class="meta-strong">Bachelor of Engineering (Mechanical)</div>
-              <div class="meta-sub">Government Engineering College, Modasa (GTU)</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Honors -->
-        <div class="item-box">
-          <div class="item-box-title">
-            <i data-lucide="trophy" style="color:var(--accent-amber)"></i> Key Awards
-          </div>
-          <div class="cert-item">
-            <i data-lucide="star" style="color:var(--accent-amber)"></i>
-            <div>
-              <div class="meta-strong">Coforge Value Champion & Above and Beyond</div>
-              <div class="meta-sub">Awarded for multi-tenant platform architecture and team leadership</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <i data-lucide="star" style="color:var(--accent-amber)"></i>
-            <div>
-              <div class="meta-strong">Infosys Insta Award</div>
-              <div class="meta-sub">Honored for flawless delivery of Truist merger platform unification</div>
-            </div>
-          </div>
-          <div class="cert-item">
-            <i data-lucide="star" style="color:var(--accent-amber)"></i>
-            <div>
-              <div class="meta-strong">Behind the Scenes Star & You Inspire</div>
-              <div class="meta-sub">Peer leadership and solution engineering recognition</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
     <div class="container">
-      <p>&copy; 2026 Prasun Chandra Pandey. Designed for GitHub Pages & FinTech Innovation Portfolios.</p>
-    </div>
-  </footer>
+        <header>
+            <h1>Prasun Chandra Pandey</h1>
+            <div class="subtitle">Product Manager | FinTech & AI-Enabled Workflows</div>
+            <div class="hook-quote">
+                "What differentiates me is that I don't bring Product Management, FinTech domain knowledge, and AI as three separate skills — I've already been applying them together to solve complex, regulated product problems."
+            </div>
+        </header>
 
-  <script>
-    lucide.createIcons();
-  </script>
+        <section>
+            <h2>Proven Scale & Impact</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="metric-value">60%</div>
+                    <div class="metric-label">Reduction in KYC Review Time</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">From 45-50 mins to <20 mins via AI-assisted workflows & dynamic risk rating.</p>
+                </div>
+                <div class="card">
+                    <div class="metric-value">70%</div>
+                    <div class="metric-label">SDLC Effort Reduction</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">Accelerated product delivery cycles (38 to 11.5 days) using GenAI.</p>
+                </div>
+                <div class="card">
+                    <div class="metric-value">12K+</div>
+                    <div class="metric-label">Investors Onboarded</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">Scaled compliance platform supporting 1,900+ funds & 1,100+ document types.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid-2">
+            <section>
+                <h2>Professional Moat</h2>
+                <div class="card" style="height: 100%;">
+                    <ul class="job-details" style="list-style-type: none; margin-left: 0;">
+                        <li style="margin-bottom: 1rem;"><strong>Regulated Domain Specialization:</strong> Deep expertise in Fund Administration, Investor Onboarding, KYC/AML, and RegTech.</li>
+                        <li style="margin-bottom: 1rem;"><strong>AI Differentiation:</strong> Hands-on implementation of Intelligent Document Processing (IDP) and Human-in-the-Loop compliance AI architectures.</li>
+                        <li style="margin-bottom: 1rem;"><strong>End-to-End Execution:</strong> Complete product lifecycle leadership from customer discovery to release governance.</li>
+                        <li><strong>Risk Mitigation:</strong> Proven ability to navigate LLM limitations (hallucinations, source attribution) in critical compliance environments.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>AI & Technical Capabilities</h2>
+                <div class="card" style="height: 100%;">
+                    <div class="tag-container" style="margin-bottom: 1.5rem;">
+                        <span class="tag">Prompt Engineering (COSTAR+Q)</span>
+                        <span class="tag">Azure AI Foundry</span>
+                        <span class="tag">Intelligent Document Processing</span>
+                        <span class="tag">GenAI SDLC</span>
+                        <span class="tag">JSON & REST APIs</span>
+                        <span class="tag">Human-in-the-Loop AI</span>
+                        <span class="tag">SQL & Data Mapping</span>
+                    </div>
+                    <div class="hook-quote" style="font-size: 0.95rem; border-left-color: var(--border-color);">
+                        "I actively evaluate where AI can create meaningful business value, experiment with emerging capabilities, and translate findings into practical, compliance-ready product improvements."
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section>
+            <h2>Career Highlights</h2>
+            <div class="timeline-item">
+                <div class="job-title">Lead Product Owner</div>
+                <div class="job-company">Coforge Limited | Jun 2022 – Present</div>
+                <ul class="job-details">
+                    <li>Lead product strategy and customer discovery for a multi-tenant investor-onboarding and compliance product.</li>
+                    <li>Integrated seven enterprise platforms (WorldCheck, DocuSign, SendGrid, Okta, Gemini) to support identity verification and dynamic risk-rating workflows.</li>
+                    <li>Evaluated LLM model performance in regulated environments, architecting a shift to mitigate hallucination risks during adverse media screening.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="job-title">Consultant / Product Owner</div>
+                <div class="job-company">Infosys Limited | Feb 2018 – Jun 2022</div>
+                <ul class="job-details">
+                    <li>Drove product discovery and backlog ownership for Truist Bank's Remote Deposit Capture unification (3,000+ ATMs, 7M+ mobile users).</li>
+                    <li>Led business analysis for HSBC payments modernization involving SWIFT MT103/202/940/942 processing.</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="job-title">Assistant System Analyst</div>
+                <div class="job-company">Tata Consultancy Services | Jul 2015 – Feb 2018</div>
+                <ul class="job-details">
+                    <li>Optimized P2P and AP operational processes for Jaguar Land Rover, identifying automation opportunities that freed ~$1M/month in Net Working Capital.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            &copy; 2026 Prasun Chandra Pandey. Deployed via GitHub Pages.
+        </footer>
+    </div>
 </body>
 </html>
