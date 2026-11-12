@@ -995,6 +995,63 @@
     }
   </style>
 
+
+  <style id="intellectual-elegance-readability-fix">
+    /* Ensure emphasis never inherits the old dark-theme white text colour. */
+    .exp-bullets strong,
+    .ach-list strong,
+    .exp-card strong,
+    .achievement-card strong,
+    .skill-category strong,
+    .item-box strong,
+    main.main-content strong {
+      color: #1E3045 !important;
+      font-weight: 700 !important;
+    }
+
+    /* Explicitly reset list layout so wrapped bullets remain consistently left-aligned. */
+    .exp-bullets,
+    .ach-list {
+      width: 100% !important;
+      align-items: stretch !important;
+      text-align: left !important;
+    }
+    .exp-bullets li,
+    .ach-list li {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      align-self: stretch !important;
+      text-align: left !important;
+      color: #424A50 !important;
+      overflow-wrap: anywhere;
+      white-space: normal !important;
+    }
+    .exp-bullets li strong,
+    .ach-list li strong {
+      display: inline !important;
+      color: #1E3045 !important;
+      background: transparent !important;
+    }
+
+    /* Keep project headings and all card copy readable on white surfaces. */
+    .project-subheading,
+    .role-title,
+    .company-name,
+    .meta-strong,
+    .item-box-title,
+    .ach-card-header,
+    .skill-cat-header {
+      color: #1E3045 !important;
+    }
+    .exp-card,
+    .achievement-card,
+    .skill-category,
+    .item-box {
+      color: #424A50 !important;
+    }
+  </style>
+
 </head>
 <body>
   <div class="glow-bg"></div>
